@@ -17,18 +17,13 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body>
+        @livewire('navbar')
+
+        @yield('content')
+
+        <x-footer/>
         
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-
         @stack('modals')
 
         @livewireScripts
