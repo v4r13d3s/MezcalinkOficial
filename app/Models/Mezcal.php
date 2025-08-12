@@ -16,7 +16,7 @@ class Mezcal extends Model
         'marca_id',
         'tipo_elaboracion_id',
         'categoria_mezcal_id',
-        'tipo_maduracion',
+        'tipo_maduracion_id',
         'maestro_id',
         'palenque_id',
         'nombre',
@@ -34,15 +34,14 @@ class Mezcal extends Model
     protected $casts = [
         'activo' => 'boolean',
         'premios' => 'json',
-        'activo' => 'boolean',
     ];
 
-    public function regions()
+    public function region()
     {
         return $this->belongsTo(Region::class);
     }
 
-    public function marcas()
+    public function marca()
     {
         return $this->belongsTo(Marca::class);
     }
@@ -59,15 +58,15 @@ class Mezcal extends Model
 
     public function tipo_elaboracion()
     {
-        return $this->belongsTo(TipoMaduracion::class);
+        return $this->belongsTo(TipoElaboracion::class);
     }
 
-    public function maestros()
+    public function maestro()
     {
         return $this->belongsTo(Maestro::class);
     }
 
-    public function palenques()
+    public function palenque()
     {
         return $this->belongsTo(Palenque::class);
     }

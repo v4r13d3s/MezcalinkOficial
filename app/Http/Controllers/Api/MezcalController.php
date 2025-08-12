@@ -20,15 +20,15 @@ class MezcalController extends Controller
     {
         try {
             $mezcals = Mezcal::with([
-                'logo', 
-                'gallery', 
-                'regions', 
-                'marcas', 
-                'tipo_maduracion', 
-                'categoria_mezcal', 
-                'tipo_elaboracion', 
-                'maestros', 
-                'palenques', 
+                'logo',
+                'gallery',
+                'region',
+                'marca',
+                'tipo_maduracion',
+                'categoria_mezcal',
+                'tipo_elaboracion',
+                'maestro',
+                'palenque',
                 'agaves'
             ])
                 ->where('activo', true)
@@ -112,6 +112,9 @@ class MezcalController extends Controller
             'premios' => 'nullable|array',
             'agave_ids' => 'nullable|array',
             'agave_ids.*' => 'exists:agaves,id',
+            // Aceptar alias "agaves" como array de ids
+            'agaves' => 'nullable|array',
+            'agaves.*' => 'exists:agaves,id',
             'activo' => 'boolean'
         ]);
 
@@ -151,9 +154,10 @@ class MezcalController extends Controller
                 'activo' => $request->activo ?? true
             ]);
 
-            // Asociar agaves si se proporcionan
-            if ($request->has('agave_ids') && is_array($request->agave_ids)) {
-                $mezcal->agaves()->attach($request->agave_ids);
+            // Asociar agaves si se proporcionan (aceptar agave_ids o agaves)
+            $agavesIds = $request->agave_ids ?? $request->agaves ?? null;
+            if (is_array($agavesIds)) {
+                $mezcal->agaves()->attach($agavesIds);
             }
 
             DB::commit();
@@ -163,13 +167,13 @@ class MezcalController extends Controller
                 'status' => 201,
                 'data' => [
                     'mezcal' => $mezcal->load([
-                        'regions', 
-                        'marcas', 
+                        'region',
+                        'marca',
                         'tipo_maduracion', 
                         'categoria_mezcal', 
                         'tipo_elaboracion', 
-                        'maestros', 
-                        'palenques', 
+                        'maestro',
+                        'palenque',
                         'agaves'
                     ])
                 ]
@@ -206,6 +210,9 @@ class MezcalController extends Controller
             '*.premios' => 'nullable|array',
             '*.agave_ids' => 'nullable|array',
             '*.agave_ids.*' => 'exists:agaves,id',
+            // Alias
+            '*.agaves' => 'nullable|array',
+            '*.agaves.*' => 'exists:agaves,id',
             '*.activo' => 'boolean'
         ]);
 
@@ -244,9 +251,10 @@ class MezcalController extends Controller
                     'activo' => $mezcalData['activo'] ?? true
                 ]);
 
-                // Asociar agaves si se proporcionan
-                if (isset($mezcalData['agave_ids']) && is_array($mezcalData['agave_ids'])) {
-                    $mezcal->agaves()->attach($mezcalData['agave_ids']);
+                // Asociar agaves si se proporcionan (aceptar agave_ids o agaves)
+                $agavesIds = $mezcalData['agave_ids'] ?? $mezcalData['agaves'] ?? null;
+                if (is_array($agavesIds)) {
+                    $mezcal->agaves()->attach($agavesIds);
                 }
 
                 $mezcals[] = $mezcal;
@@ -291,15 +299,15 @@ class MezcalController extends Controller
 
         try {
             $mezcal = Mezcal::with([
-                'logo', 
-                'gallery', 
-                'regions', 
-                'marcas', 
-                'tipo_maduracion', 
-                'categoria_mezcal', 
-                'tipo_elaboracion', 
-                'maestros', 
-                'palenques', 
+                'logo',
+                'gallery',
+                'region',
+                'marca',
+                'tipo_maduracion',
+                'categoria_mezcal',
+                'tipo_elaboracion',
+                'maestro',
+                'palenque',
                 'agaves'
             ])
                 ->find($id);
@@ -359,7 +367,7 @@ class MezcalController extends Controller
                 return response()->json($data, 404);
             }
 
-            $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
                 'region_id' => 'nullable|exists:regions,id',
                 'marca_id' => 'nullable|exists:marcas,id',
                 'tipo_elaboracion_id' => 'nullable|exists:tipo_elaboracion,id',
@@ -377,6 +385,9 @@ class MezcalController extends Controller
                 'premios' => 'nullable|array',
                 'agave_ids' => 'nullable|array',
                 'agave_ids.*' => 'exists:agaves,id',
+                // Alias
+                'agaves' => 'nullable|array',
+                'agaves.*' => 'exists:agaves,id',
                 'activo' => 'boolean'
             ]);
 
@@ -412,9 +423,10 @@ class MezcalController extends Controller
                 'activo' => $request->activo
             ]);
 
-            // Actualizar agaves si se proporcionan
-            if ($request->has('agave_ids')) {
-                $mezcal->agaves()->sync($request->agave_ids ?? []);
+            // Actualizar agaves si se proporcionan (aceptar agave_ids o agaves)
+            if ($request->has('agave_ids') || $request->has('agaves')) {
+                $agavesIds = $request->agave_ids ?? $request->agaves ?? [];
+                $mezcal->agaves()->sync($agavesIds);
             }
 
             DB::commit();
@@ -424,13 +436,13 @@ class MezcalController extends Controller
                 'status' => 200,
                 'data' => [
                     'mezcal' => $mezcal->load([
-                        'regions', 
-                        'marcas', 
+                        'region',
+                        'marca',
                         'tipo_maduracion', 
                         'categoria_mezcal', 
                         'tipo_elaboracion', 
-                        'maestros', 
-                        'palenques', 
+                        'maestro',
+                        'palenque',
                         'agaves'
                     ])
                 ]
@@ -580,6 +592,11 @@ class MezcalController extends Controller
                 $rules['agave_ids'] = 'nullable|array';
                 $rules['agave_ids.*'] = 'exists:agaves,id';
             }
+            // Alias
+            if ($request->has('agaves')) {
+                $rules['agaves'] = 'nullable|array';
+                $rules['agaves.*'] = 'exists:agaves,id';
+            }
             if ($request->has('activo')) {
                 $rules['activo'] = 'boolean';
             }
@@ -604,11 +621,15 @@ class MezcalController extends Controller
                 $updateData['slug'] = Str::slug($updateData['nombre']);
             }
 
-            // Remover agave_ids del array de actualización
+            // Remover agave_ids/agaves del array de actualización
             $agaveIds = null;
             if (isset($updateData['agave_ids'])) {
                 $agaveIds = $updateData['agave_ids'];
                 unset($updateData['agave_ids']);
+            }
+            if (isset($updateData['agaves'])) {
+                $agaveIds = $updateData['agaves'];
+                unset($updateData['agaves']);
             }
 
             $mezcal->update($updateData);
@@ -625,13 +646,13 @@ class MezcalController extends Controller
                 'status' => 200,
                 'data' => [
                     'mezcal' => $mezcal->load([
-                        'regions', 
-                        'marcas', 
+                        'region',
+                        'marca',
                         'tipo_maduracion', 
                         'categoria_mezcal', 
                         'tipo_elaboracion', 
-                        'maestros', 
-                        'palenques', 
+                        'maestro',
+                        'palenque',
                         'agaves'
                     ])
                 ]
