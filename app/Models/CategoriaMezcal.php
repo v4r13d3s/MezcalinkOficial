@@ -19,7 +19,7 @@ class CategoriaMezcal extends Model
         'orden'
     ];
 
-    protected $cast = [
+    protected $casts = [
         'orden' => 'integer',
         'activo' => 'boolean',
     ];

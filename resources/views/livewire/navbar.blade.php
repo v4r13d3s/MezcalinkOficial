@@ -49,16 +49,16 @@
 
     <!-- Acciones (oculto en móvil) -->
     <div class="flex flex-row gap-3 hidden lg:flex">
-        <a href="#" class="group">
-            <div class="flex flex-col gap-1 items-center rounded-xl hover:bg-orange-600 w-20 h-20 py-2 group-hover:shadow-[4px_4px_8px_rgba(0,0,0,0.3)]">
-                <img src="{{ asset('images/icons/shopping_bag.svg') }}" alt="" class="w-5 h-5 group-hover:brightness-0 group-hover:invert">
-                <span class="text-black px-1 text-sm text-center group-hover:text-white">Club de suscripción</span>
+        <a href="#" class="group block">
+            <div class="flex flex-col gap-1 items-center rounded-xl bg-white group-hover:bg-orange-600 w-20 h-20 py-2 transition-colors duration-200 group-hover:shadow-[4px_4px_8px_rgba(0,0,0,0.3)]">
+                <img src="{{ asset('images/icons/shopping_bag.svg') }}" alt="" class="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all duration-200">
+                <span class="text-black px-1 text-sm text-center group-hover:text-white transition-colors duration-200">Club de suscripción</span>
             </div>
         </a>
-        <a href="#" class="group">
-            <div class="flex flex-col gap-1 items-center rounded-xl hover:bg-orange-600 w-20 h-20 py-2 group-hover:shadow-[4px_4px_8px_rgba(0,0,0,0.3)]">
-                <img src="{{ asset('images/icons/interface.svg') }}" alt="" class="w-5 h-5 group-hover:brightness-0 group-hover:invert">
-                <span class="text-black px-1 text-sm text-center group-hover:text-white">Iniciar sesión</span>
+        <a href="#" class="group block">
+            <div class="flex flex-col gap-1 items-center rounded-xl bg-white group-hover:bg-orange-600 w-20 h-20 py-2 transition-colors duration-200 group-hover:shadow-[4px_4px_8px_rgba(0,0,0,0.3)]">
+                <img src="{{ asset('images/icons/interface.svg') }}" alt="" class="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all duration-200">
+                <span class="text-black px-1 text-sm text-center group-hover:text-white transition-colors duration-200">Iniciar sesión</span>
             </div>
         </a>
     </div>
