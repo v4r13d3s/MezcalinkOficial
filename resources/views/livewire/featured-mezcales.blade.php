@@ -49,16 +49,15 @@
                     <h3 class="font-medium">Filtrar por</h3>
                     
                     <!-- Filtro de Precio -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('precio')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">PRECIO</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isPrecioOpen)
-                            <div class="space-y-3 mt-3">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('precio')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">PRECIO</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isPrecioOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+							<div class="mt-3 overflow-hidden transition-all duration-300 {{ $isPrecioOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }}">
                                 <div class="px-3 py-2">
                                     <div class="flex items-center space-x-3 mb-3">
                                         <input type="range" 
@@ -82,132 +81,121 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                         </div>
                     </div>
 
                     <!-- Filtro de Tipos de Maduración -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('maduracion')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">TIPOS DE MADURACIÓN</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isMaduracionOpen)
-                            <div class="space-y-2 mt-3" id="maduracion-filter">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('maduracion')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">TIPOS DE MADURACIÓN</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isMaduracionOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+                            <div class="mt-3 overflow-hidden transition-all duration-300 {{ $isMaduracionOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }} space-y-0.5" id="maduracion-filter">
                                 @foreach($tiposMaduracion as $tipo)
-                                    <label class="flex items-center gap-2 cursor-pointer">
+                                    <label class="flex items-center gap-3 py-1 cursor-pointer">
                                         <input type="checkbox" 
                                             wire:model.live="selectedTiposMaduracion"
                                             value="{{ $tipo->id }}"
-                                            class="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-black">
-                                        <span class="text-sm text-gray-700">{{ $tipo->nombre }}</span>
+                                            class="w-4 h-4 accent-black text-black bg-white border-2 border-gray-300 rounded focus:ring-2 focus:ring-black">
+                                        <span class="text-sm text-gray-950">{{ $tipo->nombre }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
                     </div>
 
                     <!-- Filtro de Tipos de Elaboración -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('elaboracion')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">TIPOS DE ELABORACIÓN</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isElaboracionOpen)
-                            <div id="elaboracion-filter" class="space-y-2 mt-3">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('elaboracion')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">TIPOS DE ELABORACIÓN</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isElaboracionOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+                            <div id="elaboracion-filter" class="mt-3 overflow-hidden transition-all duration-300 {{ $isElaboracionOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }} space-y-0.5">
                                 @foreach($tiposElaboracion as $tipo)
-                                    <label class="flex items-center gap-2 cursor-pointer">
+                                    <label class="flex items-center gap-3 py-1 cursor-pointer">
                                         <input type="checkbox" 
                                             wire:model.live="selectedTiposElaboracion"
                                             value="{{ $tipo->id }}"
-                                            class="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-black">
-                                        <span class="text-sm text-gray-700">{{ $tipo->nombre }}</span>
+                                            class="w-4 h-4 accent-black text-black bg-white border-2 border-gray-300 rounded focus:ring-2 focus:ring-black">
+                                        <span class="text-sm text-gray-950">{{ $tipo->nombre }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
                     </div>
 
                     <!-- Filtro de Regiones -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('region')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">REGIÓN DE ORIGEN</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isRegionOpen)
-                            <div id="region-filter" class="space-y-2 mt-3">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('region')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">REGIÓN DE ORIGEN</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isRegionOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+                            <div id="region-filter" class="mt-3 overflow-hidden transition-all duration-300 {{ $isRegionOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }} space-y-0.5">
                                 @foreach($regiones as $region)
-                                    <label class="flex items-center gap-2 cursor-pointer">
+                                    <label class="flex items-center gap-3 py-1 cursor-pointer">
                                         <input type="checkbox" 
                                             wire:model.live="selectedRegiones"
                                             value="{{ $region->id }}"
-                                            class="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-black">
-                                        <span class="text-sm text-gray-700">{{ $region->nombre }}</span>
+                                            class="w-4 h-4 accent-black text-black bg-white border-2 border-gray-300 rounded focus:ring-2 focus:ring-black">
+                                        <span class="text-sm text-gray-950">{{ $region->nombre }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
                     </div>
 
                     <!-- Filtro de Categorías -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('categoria')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">CATEGORÍAS</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isCategoriaOpen)
-                            <div id="categoria-filter" class="space-y-2 mt-3">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('categoria')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">CATEGORÍAS</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isCategoriaOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+                            <div id="categoria-filter" class="mt-3 overflow-hidden transition-all duration-300 {{ $isCategoriaOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }} space-y-0.5">
                                 @foreach($categorias as $categoria)
-                                    <label class="flex items-center gap-2 cursor-pointer">
+                                    <label class="flex items-center gap-3 py-1 cursor-pointer">
                                         <input type="checkbox" 
                                             wire:model.live="selectedCategorias"
                                             value="{{ $categoria->id }}"
-                                            class="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-black">
-                                        <span class="text-sm text-gray-700">{{ $categoria->nombre }}</span>
+                                            class="w-4 h-4 accent-black text-black bg-white border-2 border-gray-300 rounded focus:ring-2 focus:ring-black">
+                                        <span class="text-sm text-gray-950">{{ $categoria->nombre }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
                     </div>
 
                     <!-- Filtro de Tipos de Agave -->
-                    <div class="space-y-3">
-                        <div class="group">
-                            <button type="button" wire:click="toggleSection('agave')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
-                                <span class="font-semibold text-gray-800">TIPO DE AGAVE</span>
-                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            @if($isAgaveOpen)
-                            <div id="agave-filter" class="space-y-2 max-h-48 overflow-y-auto mt-3">
+					<div class="space-y-3">
+						<div class="group">
+							<button type="button" wire:click="toggleSection('agave')" class="flex items-center justify-between w-full text-left cursor-pointer select-none">
+								<span class="font-semibold text-black">TIPO DE AGAVE</span>
+								<svg class="w-4 h-4 transform transition-transform {{ $isAgaveOpen ? 'rotate-180' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</button>
+                            <div id="agave-filter" class="mt-3 overflow-hidden transition-all duration-300 {{ $isAgaveOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0' }} space-y-0.5">
                                 @foreach($tiposAgave as $agave)
-                                    <label class="flex items-center gap-2 cursor-pointer">
+                                    <label class="flex items-center gap-3 py-1 cursor-pointer">
                                         <input type="checkbox" 
                                             wire:model.live="selectedTiposAgave"
                                             value="{{ $agave->id }}"
-                                            class="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-black">
-                                        <span class="text-sm text-gray-700">{{ $agave->nombre }}</span>
+                                            class="w-4 h-4 accent-black text-black bg-white border-2 border-gray-300 rounded focus:ring-2 focus:ring-black">
+                                        <span class="text-sm text-gray-950">{{ $agave->nombre }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -368,16 +356,5 @@
         </div>
     </section>
 
-    {{-- Loading overlay --}}
-    <div wire:loading class="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-6 shadow-xl">
-            <div class="flex items-center space-x-3">
-                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l-3-2.647z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-900">Cargando mezcales...</span>
-            </div>
-        </div>
-    </div>
+    
 </div>
