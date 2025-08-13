@@ -26,7 +26,15 @@ class FeaturedMezcales extends Component
     
     // Filtro de precio
     public $precioMin = 0;
-    public $precioMax = 10000;
+    public $precioMax = 5000;
+
+    // Estado de apertura de secciones de filtros (acordeones)
+    public $isPrecioOpen = true;
+    public $isMaduracionOpen = true;
+    public $isElaboracionOpen = true;
+    public $isRegionOpen = true;
+    public $isCategoriaOpen = true;
+    public $isAgaveOpen = true;
 
     // Para resetear la paginación cuando cambien los filtros
     public function updatedSelectedTiposMaduracion()
@@ -83,6 +91,10 @@ class FeaturedMezcales extends Component
             case 'tipo_agave':
                 $this->selectedTiposAgave = array_filter($this->selectedTiposAgave, fn($id) => $id != $value);
                 break;
+            case 'precio':
+                $this->precioMin = 0;
+                $this->precioMax = 5000;
+                break;
         }
         $this->resetPage();
     }
@@ -96,8 +108,26 @@ class FeaturedMezcales extends Component
         $this->selectedCategorias = [];
         $this->selectedTiposAgave = [];
         $this->precioMin = 0;
-        $this->precioMax = 10000;
+        $this->precioMax = 5000;
         $this->resetPage();
+    }
+
+    // Acordeones: alternar apertura/cierre de cada sección
+    public function toggleSection($section)
+    {
+        $map = [
+            'precio' => 'isPrecioOpen',
+            'maduracion' => 'isMaduracionOpen',
+            'elaboracion' => 'isElaboracionOpen',
+            'region' => 'isRegionOpen',
+            'categoria' => 'isCategoriaOpen',
+            'agave' => 'isAgaveOpen',
+        ];
+
+        if (isset($map[$section])) {
+            $propertyName = $map[$section];
+            $this->$propertyName = !$this->$propertyName;
+        }
     }
 
     public function render()
@@ -145,7 +175,7 @@ class FeaturedMezcales extends Component
         }
 
         // Filtro de precio
-        if ($this->precioMin > 0 || $this->precioMax < 10000) {
+        if ($this->precioMin > 0 || $this->precioMax < 5000) {
             $mezcalesQuery->whereBetween('precio_regular', [$this->precioMin, $this->precioMax]);
         }
 
