@@ -1,50 +1,60 @@
-<footer class="bg-gray-100 text-gray-800 py-8 px-4">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="bg-neutral-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:pl-12 lg:pr-6 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
       
-      <!-- About the store section -->
-      <div class="space-y-4">
-        <h3 class="font-bold text-lg">About the store</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="hover:text-blue-600 transition">Home</a></li>
-          <li><a href="#" class="hover:text-blue-600 transition">Become a customer</a></li>
-          <li><a href="#" class="hover:text-blue-600 transition">About us</a></li>
-          <li><a href="#" class="hover:text-blue-600 transition">FAQ</a></li>
-          <li><a href="#" class="hover:text-blue-600 transition">Return policy</a></li>
-          <li><a href="#" class="hover:text-blue-600 transition">Contact us</a></li>
-        </ul>
-      </div>
-  
-      <!-- Language section -->
-      <div class="space-y-4">
-        <h3 class="font-bold text-lg">Language</h3>
-        <div class="grid grid-cols-2 gap-2">
-          <a href="#" class="hover:text-blue-600 transition">Deutsch</a>
-          <a href="#" class="hover:text-blue-600 transition">English</a>
-          <a href="#" class="hover:text-blue-600 transition">Español</a>
-          <a href="#" class="hover:text-blue-600 transition">Français</a>
-          <a href="#" class="hover:text-blue-600 transition">Indonesian</a>
-          <a href="#" class="hover:text-blue-600 transition">Italian</a>
-          <a href="#" class="hover:text-blue-600 transition">Nederlands</a>
-          <a href="#" class="hover:text-blue-600 transition">Polski</a>
-          <a href="#" class="hover:text-blue-600 transition">Português</a>
-          <a href="#" class="hover:text-blue-600 transition">русский</a>
-          <a href="#" class="hover:text-blue-600 transition">Tiếng Việt</a>
-          <a href="#" class="hover:text-blue-600 transition">Türkçe</a>
+      <!-- Columna izquierda: enlaces -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-extrabold tracking-wide">LINKS DE INTERÉS</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li><a href="#" class="transition hover:text-white">COMUNIDAD</a></li>
+            <li><a href="#" class="transition hover:text-white">¿QUIÉNES SOMOS?</a></li>
+            <li><a href="#" class="transition hover:text-white">PREGUNTAS FRECUENTES</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h3 class="text-xl font-extrabold tracking-wide">POLÍTICAS</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li><a href="#" class="transition hover:text-white">POLÍTICAS DE PRIVACIDAD</a></li>
+            <li><a href="#" class="transition hover:text-white">TÉRMINOS Y CONDICIONES</a></li>
+          </ul>
         </div>
       </div>
-  
-      <!-- Bottom links section -->
-      <div class="space-y-4">
-        <div class="flex flex-wrap gap-4">
-          <a href="#" class="hover:text-blue-600 transition">Terms of purchase</a>
-          <a href="#" class="hover:text-blue-600 transition">Security and privacy</a>
-          <a href="#" class="hover:text-blue-600 transition">Newsletter</a>
+
+      <!-- Columna central: logo -->
+      <div class="flex flex-col items-center justify-start lg:justify-center space-y-4">
+        <img src="{{ asset('images/MK_w.svg') }}" alt="MEZCALINK" class="h-16">
+      </div>
+
+      <!-- Columna derecha: contacto y redes -->
+      <div class="space-y-8 lg:justify-self-end lg:text-right lg:pr-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-extrabold tracking-wide">CONTACTO</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li>
+              <a href="tel:+524213234322" class="transition hover:text-white">+52 421 323 4322</a>
+            </li>
+            <li>
+              <a href="mailto:mezcalink@mezcal.com" class="transition hover:text-white">MEZCALINK@MEZCAL.COM</a>
+            </li>
+          </ul>
         </div>
-        
-        <div class="pt-4">
-          <h3 class="font-bold text-lg">Get in touch</h3>
-          <!-- Aquí podrías añadir iconos de redes sociales o formulario de contacto -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-extrabold tracking-wide">SÍGUENOS EN:</h3>
+          <div class="flex items-center gap-5">
+            <a href="#" class="transition hover:opacity-100 opacity-90"><img src="{{ asset('images/icons/Facebook.svg') }}" alt="Facebook" class="h-7 w-7"></a>
+            <a href="#" class="transition hover:opacity-100 opacity-90"><img src="{{ asset('images/icons/Instagram.svg') }}" alt="Instagram" class="h-7 w-7"></a>
+            <a href="#" class="transition hover:opacity-100 opacity-90"><img src="{{ asset('images/icons/Twitter.svg') }}" alt="Twitter" class="h-7 w-7"></a>
+            <a href="#" class="transition hover:opacity-100 opacity-90"><img src="{{ asset('images/icons/TikTok.svg') }}" alt="TikTok" class="h-7 w-7"></a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+
+    <!-- Barra inferior -->
+    <div class="mt-12 border-t border-white/10 pt-6 flex items-center justify-between text-sm text-gray-400">
+      <p>COPYRIGHT © 2025, MEZCALINK, VERACRUZ MÉXICO</p>
+      <img src="{{ asset('images/MK_horizontal_w.svg') }}" alt="MEZCALINK" class="h-6">
+    </div>
+  </div>
+</footer>

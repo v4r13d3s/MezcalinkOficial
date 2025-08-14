@@ -8,4 +8,5 @@
     <x-conoce-marcas></x-conoce-marcas>
     <x-conoce-agaves></x-conoce-agaves>
     <x-regiones-mezcaleras></x-regiones-mezcaleras>
+    <x-comunidad-section></x-comunidad-section>
 @endsection
