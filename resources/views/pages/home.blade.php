@@ -7,4 +7,5 @@
     <x-proceso-elaboracion></x-proceso-elaboracion>
     <x-conoce-marcas></x-conoce-marcas>
     <x-conoce-agaves></x-conoce-agaves>
+    <x-regiones-mezcaleras></x-regiones-mezcaleras>
 @endsection

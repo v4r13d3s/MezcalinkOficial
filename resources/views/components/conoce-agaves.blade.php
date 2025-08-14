@@ -33,7 +33,7 @@
 	</div>
 
 	{{-- Logo esquina inferior izquierda (puedes reemplazar la imagen) --}}
-	<div class="absolute left-8 bottom-8" data-animate="fadeIn" data-delay="0.6">
-		<img src="{{ asset('images/MK_icon_w.svg') }}" alt="LNK" class="h-12 opacity-90">
+	<div class="absolute left-10 bottom-8" data-animate="fadeIn" data-delay="0.6">
+		<img src="{{ asset('images/MK_icon_w.svg') }}" alt="LNK" class="h-12">
 	</div>
 </section>
